@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="shortcut icon" href="/images/fav.ico" />
     <script src="/js/chart.min.js"></script>
+    <script src="/js/myChart.js"></script>
     <script src="/js/sensors.js"></script>
     <title>Smeetopia Home</title>
   </head>
@@ -34,9 +35,7 @@
           class="table-box data-text"
           style="min-width: 50% !important; width: 50% !important;"
         >
-          <i class="fas fa-thermometer-half"></i>
-          <p class="data-value">Hello</p>
-          <p>Living Room</p>
+          <canvas id="myLineChart"></canvas>
         </td>
         <td class="table-box data-text">
           <i class="fas fa-thermometer-half"></i>
@@ -61,9 +60,7 @@
           class="table-box data-text"
           style="min-width: 50% !important; width: 50% !important;"
         >
-          <i class="fas fa-thermometer-half"></i>
-          <p class="data-value">Hello</p>
-          <p>Living Room</p>
+          <canvas id="myLineChart"></canvas>
         </td>
       </tr>
     </table>

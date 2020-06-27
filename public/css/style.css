@@ -15,6 +15,11 @@ p {
   color: rgb(61, 196, 184);
   /* line-height: 22px; */
 }
+canvas {
+  width: 80%;
+  height: 65%;
+  display: initial !important;
+}
 i {
   font-size: 100px;
 }
@@ -23,8 +28,6 @@ i {
 }
 table {
   width: 100%;
-}
-.table-box {
 }
 table {
   width: 100vw;

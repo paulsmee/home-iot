@@ -1,0 +1,8 @@
+// Creating individual tables for each sensor.
+
+// Create table for Living Room Temperature
+CREATE TABLE livingRoomTemp (
+	id serial PRIMARY KEY,
+	created timestamp NOT NULL,
+	temperature NUMERIC NOT NULL
+)
