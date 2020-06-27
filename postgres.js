@@ -1,5 +1,6 @@
 const Pool = require("pg").Pool;
 var moment = require("moment");
+var { tempObject } = require("./router");
 
 const pool = new Pool({
   host: "localhost",
@@ -16,18 +17,19 @@ pool.connect().then((clientObj) => {
 
 var pgSQLFunctions = {
   insertLivingRoomTemp: async function () {
-    var tempValue;
+    console.log(tempObject.getLivingRoom());
+    var tempValue = tempObject.getLivingRoom();
     const query =
-      "INSERT INTO livingRoomTemp (id, created, temperature ) VALUES (DEFAULT, DEFAULT, '" +
+      "INSERT INTO livingRoomTemp (id, created, temperature ) VALUES (DEFAULT, current_timestamp , '" +
       tempValue +
       "')";
 
     try {
-      client.query(query, row, (err, res) => {
+      client.query(query, (err, res) => {
         if (err) {
           console.log(err.stack);
         } else {
-          console.log("inserted " + res.rowCount + " row:", row);
+          console.log("inserted " + moment());
         }
       });
     } finally {
@@ -35,3 +37,5 @@ var pgSQLFunctions = {
     }
   },
 };
+
+module.exports.pgSQLFunctions = pgSQLFunctions;

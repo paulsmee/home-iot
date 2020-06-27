@@ -4,6 +4,7 @@ var express = require("express");
 var server = express();
 var bodyParser = require("body-parser");
 var morgan = require("morgan");
+require("./scheduler");
 
 server.set("view engine", "ejs");
 

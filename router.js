@@ -5,6 +5,11 @@ const router = express.Router();
 const { sensorData } = require("./sensor-data");
 
 var livingRoomValue;
+var tempObject = {
+  getLivingRoom: function () {
+    return livingRoomValue;
+  },
+};
 
 router.get("/", function (req, res) {
   res.render("index.ejs");
@@ -21,3 +26,4 @@ router.get("/sensor/temperature/livingroom/data", function (req, res) {
 });
 
 module.exports = router;
+module.exports.tempObject = tempObject;
