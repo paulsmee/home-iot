@@ -3,14 +3,7 @@
 const express = require("express");
 const router = express.Router();
 const { sensorData } = require("./sensor-data");
-const { pgSQLFunctions } = require("./postgres");
-
-var livingRoomValue;
-var tempObject = {
-    getLivingRoom: function() {
-        return livingRoomValue;
-    },
-};
+const { pgSQLFunctions, blah } = require("./postgres");
 
 router.get("/", function(req, res) {
     res.render("index.ejs");
@@ -18,20 +11,23 @@ router.get("/", function(req, res) {
 });
 
 router.post("/sensor/temperature/livingroom", function(req, res) {
-    console.log("Received POST request from LivingRoom Sensor")
-    livingRoomValue = Math.round(req.body.temperature);
-    res.send(req.body);
+    pgSQLFunctions.insert5MinuteLivingRoomTemp(Math.round(req.body.temperature));
 });
 
-router.get("/sensor/temperature/livingroom/data", function(req, res) {
-    res.send(livingRoomValue + "");
+router.get("/sensor/temperature/livingroom/data", async function(req, res) {
+    try {
+        const result = await pgSQLFunctions.livingRoomTempValue()
+        res.send(result + "");
+    } catch (e) {
+        console.log("error getting living room temp: ", e)
+    }
 });
 
 router.get("/sensor/temperature/livingroom/data-return", async(req, res, next) => {
     try {
-        const livingRoomData = await pgSQLFunctions.livingRoomTempHistory()
-        console.log(livingRoomData)
-            // res.json(livingRoomData);
+        const blah = await pgSQLFunctions.livingRoomTempHistory()
+        console.log(blah)
+        res.json(blah);
     } catch (e) {
         console.log(e)
         res.sendStatus(500)
@@ -40,5 +36,6 @@ router.get("/sensor/temperature/livingroom/data-return", async(req, res, next) =
 })
 
 
+
+
 module.exports = router;
-module.exports.tempObject = tempObject;

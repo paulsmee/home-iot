@@ -3,10 +3,15 @@
 var schedule = require("node-schedule");
 var { pgSQLFunctions } = require("./postgres");
 
-schedule.scheduleJob("1 17 * * * *", function () {
-  pgSQLFunctions.insertLivingRoomTemp();
-  console.log("I'm scheduled, give me Functions!");
+schedule.scheduleJob("1 17 * * * *", function() {
+    pgSQLFunctions.insertLivingRoomTemp();
+    console.log("I'm scheduled, give me Functions!");
 });
+
+// schedule.scheduleJob("1 * * * * *", function() {
+//     pgSQLFunctions.insertLivingRoomTemp();
+//     console.log("I'm scheduled, give me Functions!");
+// });
 
 // *    *    *    *    *    *
 // ┬    ┬    ┬    ┬    ┬    ┬

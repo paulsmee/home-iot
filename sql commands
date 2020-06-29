@@ -6,3 +6,9 @@ CREATE TABLE livingRoomTemp (
 	created timestamp NOT NULL,
 	temperature NUMERIC NOT NULL
 )
+
+CREATE TABLE livingRoomTemp5Min (
+	id serial PRIMARY KEY,
+	created timestamp NOT NULL,
+	temperature NUMERIC NOT NULL
+)

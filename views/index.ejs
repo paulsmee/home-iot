@@ -1,16 +1,9 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
-      crossorigin="anonymous"
-    />
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -21,48 +14,43 @@
     <script src="/js/myChart.js"></script>
     <script src="/js/sensors.js"></script>
     <title>Smeetopia Home</title>
-  </head>
+</head>
 
-  <body>
+<body>
     <table>
-      <tr>
-        <td class="table-box data-text">
-          <i class="fas" id="living-temp"></i>
-          <p class="data-value" id="t1">temp</p>
-          <p>Living Room</p>
-        </td>
-        <td
-          class="table-box data-text"
-          style="min-width: 50% !important; width: 50% !important;"
-        >
-          <canvas id="myLineChart"></canvas>
-        </td>
-        <td class="table-box data-text">
-          <i class="fas fa-thermometer-half"></i>
-          <p class="data-value">35c</p>
-          <p>Living Room</p>
-        </td>
-      </tr>
+        <tr>
+            <td class="table-box data-text">
+                <i class="fas" id="living-temp"></i>
+                <p class="data-value" id="t1">temp</p>
+                <p>Living Room</p>
+            </td>
+            <td class="table-box data-text" style="min-width: 50% !important; width: 50% !important;">
+                <canvas id="myLineChart"></canvas>
+            </td>
+            <td class="table-box data-text">
+                <i class="fas fa-truck-monster"></i>
+                <p class="data-value">3</p>
+                <p>Wheels Left</p>
+            </td>
+        </tr>
     </table>
     <table>
-      <tr>
-        <td class="table-box data-text">
-          <i class="fas fa-thermometer-half"></i>
-          <p class="data-value">35c</p>
-          <p>Living Room</p>
-        </td>
-        <td class="table-box data-text">
-          <i class="fas fa-thermometer-half"></i>
-          <p class="data-value">35c</p>
-          <p>Living Room</p>
-        </td>
-        <td
-          class="table-box data-text"
-          style="min-width: 50% !important; width: 50% !important;"
-        >
-          <canvas id="myLineChart"></canvas>
-        </td>
-      </tr>
+        <tr>
+            <td class="table-box data-text">
+                <i class="fab fa-empire"></i>
+                <p class="data-value">14</p>
+                <p>Star Destroyers</p>
+            </td>
+            <td class="table-box data-text">
+                <i class="fab fa-rebel"></i>
+                <p class="data-value">0</p>
+                <p>Alderan</p>
+            </td>
+            <td class="table-box data-text" style="min-width: 50% !important; width: 50% !important;">
+                <canvas id="myLineChart2"></canvas>
+            </td>
+        </tr>
     </table>
-  </body>
+</body>
+
 </html>

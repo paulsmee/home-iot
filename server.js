@@ -9,13 +9,7 @@ require("./scheduler");
 server.set("view engine", "ejs");
 
 server.use(express.json());
-server.use(
-    bodyParser.urlencoded({
-        extended: false,
-    })
-);
-server.use(bodyParser.json());
-server.use(bodyParser.raw());
+server.use(bodyParser.urlencoded({ extended: true }));
 // server.use(morgan('dev'));
 
 server.use(express.static("public"));

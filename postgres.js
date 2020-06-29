@@ -1,6 +1,5 @@
 const Pool = require("pg").Pool;
 var moment = require("moment");
-var { tempObject } = require("./router");
 
 const pool = new Pool({
     host: "localhost",
@@ -15,13 +14,14 @@ const pool = new Pool({
 //     client = clientObj;
 // });
 
-var pgSQLFunctions = {
+var temp5MinLivingRoom
+
+const pgSQLFunctions = {
     insertLivingRoomTemp: async function() {
-        console.log(tempObject.getLivingRoom());
-        var tempValue = tempObject.getLivingRoom();
+        console.log(temp5MinLivingRoom);
         const query =
             "INSERT INTO livingRoomTemp (id, created, temperature ) VALUES (DEFAULT, current_timestamp , '" +
-            tempValue +
+            temp5MinLivingRoom +
             "')";
 
         try {
@@ -29,7 +29,7 @@ var pgSQLFunctions = {
                 if (err) {
                     console.log(err.stack);
                 } else {
-                    console.log("inserted " + moment());
+                    console.log("inserted " + moment().format("DD/MM/YYYY hh:mm"));
                 }
             });
         } finally {
@@ -37,20 +37,54 @@ var pgSQLFunctions = {
         }
     },
 
+    // @params data = 5 minute temperature from livingroom sensor
+    insert5MinuteLivingRoomTemp: async function(data) {
+        temp5MinLivingRoom = data
+        const query =
+            "INSERT INTO livingRoomTemp5Min (id, created, temperature ) VALUES (DEFAULT, current_timestamp , '" +
+            data +
+            "')";
+
+        try {
+            pool.query(query, (err, res) => {
+                if (err) {
+                    console.log(err.stack);
+                } else {
+                    console.log("inserted " + moment().format("DD/MM/YYYY hh:mm"));
+                }
+            });
+        } finally {
+            //   done();
+        }
+    },
+
+    livingRoomTempValue: async function() {
+        return temp5MinLivingRoom
+    },
+
     livingRoomTempHistory: async function() {
-        console.log("Getting past 24 hours for Living Room");
-        var tempArray = [];
+        try {
+            console.log("Getting past 24 hours for Living Room");
+            var tempArray = [];
 
 
-        const result = await pool.query({
-            // rowMode: "array",
-            text: "SELECT * FROM public.livingroomtemp ORDER BY id ASC LIMIT 24;",
-        })
-        tempArray = result.rows
+            const result = await pool.query({
+                // rowMode: "array",
+                text: "SELECT * FROM public.livingroomtemp ORDER BY id ASC LIMIT 24;",
+            })
+            console.log("runnun")
+            tempArray = result.rows
+        } catch (e) {
+            console.log("failed: ", e)
+        }
+
+
         console.log(tempArray)
         return tempArray;
     },
+
 };
 
-pgSQLFunctions.livingRoomTempHistory()
+
+// pgSQLFunctions.livingRoomTempHistory()
 module.exports.pgSQLFunctions = pgSQLFunctions;
