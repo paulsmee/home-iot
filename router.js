@@ -4,6 +4,7 @@ const express = require("express");
 const router = express.Router();
 const { sensorData } = require("./sensor-data");
 const { pgSQLFunctions, blah } = require("./postgres");
+var moment = require("moment");
 
 router.get("/", function(req, res) {
     res.render("index.ejs");
@@ -25,14 +26,22 @@ router.get("/sensor/temperature/livingroom/data", async function(req, res) {
 
 router.get("/sensor/temperature/livingroom/data-return", async(req, res, next) => {
     try {
-        const blah = await pgSQLFunctions.livingRoomTempHistory()
-        console.log(blah)
-        res.json(blah);
+        const result = await pgSQLFunctions.livingRoomTempHistory()
+        var dataObject = {
+            data: [],
+            label: []
+        }
+        var labelObject = []
+        result.forEach((element) => {
+            dataObject.data.push(element.temperature)
+            dataObject.label.push(moment(element.created).format("hh"))
+        })
+        console.log(dataObject)
+        res.json(dataObject);
     } catch (e) {
-        console.log(e)
+        console.log("Failed to get Living Room Array: ", e)
         res.sendStatus(500)
     }
-
 })
 
 

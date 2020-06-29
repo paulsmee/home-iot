@@ -67,19 +67,15 @@ const pgSQLFunctions = {
             console.log("Getting past 24 hours for Living Room");
             var tempArray = [];
 
-
             const result = await pool.query({
                 // rowMode: "array",
-                text: "SELECT * FROM public.livingroomtemp ORDER BY id ASC LIMIT 24;",
+                text: "SELECT * FROM public.livingroomtemp ORDER BY id DESC LIMIT 24;",
             })
             console.log("runnun")
             tempArray = result.rows
         } catch (e) {
             console.log("failed: ", e)
         }
-
-
-        console.log(tempArray)
         return tempArray;
     },
 
